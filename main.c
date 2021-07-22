@@ -6,7 +6,7 @@
 /*   By: jwhirlpo <jwhirlpo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 18:32:14 by jwhirlpo          #+#    #+#             */
-/*   Updated: 2021/07/21 22:48:06 by jwhirlpo         ###   ########.fr       */
+/*   Updated: 2021/07/22 17:57:39 by jwhirlpo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,9 @@ int		ps_b_find(t_push *push)
 	while (buf)
 	{
 		i_a = ps_find(push, buf);
+		if (i_a > (ps_st_ln(push->a) / 2))
+			i_a = ps_st_ln(push->a) - i_a;
+		// printf("\ni_a = %d\ni_ind_b = %d\n\n", i_a, buf->ind);
 		if ((i > (i_a + k) && k < (ps_st_ln(push->a) / 2)))
 		{
 			i = i_a + k;
@@ -267,8 +270,9 @@ int		ps_b_find(t_push *push)
 	// printf("\ni = %d\nj = %d\n\n", i, j);
 	// ps_print(push->a);
 	// ps_print(push->b);
-	if (j > (ps_st_ln(push->a) / 2))
-		j = j - ps_st_ln(push->a);
+	if (j > (ps_st_ln(push->b) / 2))
+		j = j - ps_st_ln(push->b);
+	// printf("\nj = %d\n", j);
 	if (j > 0)
 		while (j-- > 0)
 			ps_rotate(push->b, 2);
